@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using NPI.Metier;
+using NPI.Metier.Interfaces;
 using NPI.Models;
 using System.Diagnostics;
 
@@ -9,9 +9,12 @@ namespace NPI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private INPIMetier _nPIMetier;
+
+        public HomeController(INPIMetier nPIMetier,ILogger<HomeController> logger)
         {
             _logger = logger;
+            _nPIMetier = nPIMetier;
         }
 
         public IActionResult Index()
@@ -33,8 +36,7 @@ namespace NPI.Controllers
         {
             try
             {
-                NPIMetier nPIMetier = new NPIMetier();
-                var data = new { message = nPIMetier.Calculer(formule), status = "success" };
+                var data = new { message = _nPIMetier.Calculer(formule), status = "success" };
                 return Json(data);
             }
             catch (Exception e)

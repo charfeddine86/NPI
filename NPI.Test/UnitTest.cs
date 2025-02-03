@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using NPI.Metier;
+using NPI.Metier.Implementations;
 using System.Security.Cryptography;
 
 namespace NPI.Test

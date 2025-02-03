@@ -1,4 +1,11 @@
+using Microsoft.Extensions.Configuration;
+using NPI.Metier.Implementations;
+using NPI.Metier.Interfaces;
+using System.Security.Principal;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddTransient<INPIMetier, NPIMetier>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

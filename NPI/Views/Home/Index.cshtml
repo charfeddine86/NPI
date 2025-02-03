@@ -142,13 +142,13 @@
                     if (data.status === "success") {
                         $("#result").val(data.message);
                     } else {
-                        alert("Erreur AJAX :" + data.message);
+                        alert("Erreur : formule incorrecte");
                         $("#result").val("");
                         
                     }    
                 },
                 error: function (xhr, status, error) {
-                    alert("Erreur AJAX :" + error);
+                    alert("Erreur :" + error);
                     $("#result").val("");
                 }
             });
@@ -169,23 +169,6 @@
             || event.key == '*' || event.key == '/')
             document.getElementById("result").value += event.key;
     }
-
-    // var cal = document.getElementById("calcu");
-    // cal.onkeyup = function (event) {
-    //     if (event.keyCode === 13) {
-    //         console.log("Enter");
-    //         let x = document.getElementById("result").value
-    //         console.log(x);
-    //         solve();
-    //     }
-    // }
-
-    // function solve() {
-
-        // let x = document.getElementById("result").value
-        // let y = math.evaluate(x)
-        // document.getElementById("result").value = y
-   // }
 
     function clr() {
         document.getElementById("result").value = ""

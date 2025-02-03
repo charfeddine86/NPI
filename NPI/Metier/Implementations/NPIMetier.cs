@@ -1,16 +1,17 @@
-﻿using NPI.Resources;
+﻿using NPI.Metier.Interfaces;
+using NPI.Resources;
 using System.Reflection;
 
-namespace NPI.Metier
+namespace NPI.Metier.Implementations
 {
-    public class NPIMetier
+    public class NPIMetier : INPIMetier
     {
         public double Calculer(string expression)
         {
 
             expression = expression.Trim();
 
-            if (String.IsNullOrEmpty(expression))
+            if (string.IsNullOrEmpty(expression))
                 throw new Exception(Resource.OperationInvalide);
 
             var operation = expression.Split(' ').ToList();
@@ -33,16 +34,16 @@ namespace NPI.Metier
                          val.Trim() == "*" || val.Trim() == "^")
                     Operation(pile, val);
                 else
-                  throw new Exception($" {Resource.ValeurInconnu} : {val}");
+                    throw new Exception($" {Resource.ValeurInconnu} : {val}");
             }
 
             if (pile.Count != 1)
                 throw new InvalidOperationException(Resource.OperationInvalide);
 
             double resultat = pile.Pop();
-            if (resultat < Int64.MinValue || resultat > Int64.MaxValue)
-             throw new Exception(Resource.ValeurIncorecte);
-            
+            if (resultat < long.MinValue || resultat > long.MaxValue)
+                throw new Exception(Resource.ValeurIncorecte);
+
 
             return resultat;
         }

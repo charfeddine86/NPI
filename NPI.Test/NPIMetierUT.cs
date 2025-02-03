@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 namespace NPI.Test
 {
     [TestClass]
-    public class UnitTest
+    public class NPIMetierUT
     {
 
         [TestMethod]

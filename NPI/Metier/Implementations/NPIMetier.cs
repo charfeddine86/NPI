@@ -12,12 +12,12 @@ namespace NPI.Metier.Implementations
             expression = expression.Trim();
 
             if (string.IsNullOrEmpty(expression))
-                throw new Exception(Resource.OperationInvalide);
+                throw new Exception("Operation invalide.");
 
             var operation = expression.Split(' ').ToList();
 
             if (operation.Count == 0)
-                throw new Exception(Resource.OperationInvalide);
+                throw new Exception("Operation invalide.");
 
             if (operation.Count == 1 && double.TryParse(operation[0], out double number))
             {
@@ -34,15 +34,15 @@ namespace NPI.Metier.Implementations
                          val.Trim() == "*" || val.Trim() == "^")
                     Operation(pile, val);
                 else
-                    throw new Exception($" {Resource.ValeurInconnu} : {val}");
+                    throw new Exception($" {"Valeur Inconnu"} : {val}");
             }
 
             if (pile.Count != 1)
-                throw new InvalidOperationException(Resource.OperationInvalide);
+                throw new InvalidOperationException("Operation invalide.");
 
             double resultat = pile.Pop();
             if (resultat < long.MinValue || resultat > long.MaxValue)
-                throw new Exception(Resource.ValeurIncorecte);
+                throw new Exception("Valeur Incorecte");
 
 
             return resultat;
@@ -51,7 +51,7 @@ namespace NPI.Metier.Implementations
         private void Operation(Stack<double> pile, string val)
         {
             if (pile.Count < 2)
-                throw new InvalidOperationException(Resource.PasAssezOperandes);
+                throw new InvalidOperationException("Pas Assez de operandes");
 
             double b = pile.Pop();
             double a = pile.Pop();
@@ -69,7 +69,7 @@ namespace NPI.Metier.Implementations
                     break;
                 case "/":
                     if (b == 0)
-                        throw new DivideByZeroException(Resource.DivisionParZero);
+                        throw new DivideByZeroException("Division par Zero");
                     pile.Push(a / b);
                     break;
                 case "^":
